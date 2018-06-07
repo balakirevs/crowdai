@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   #protect_from_forgery
   #protect_from_forgery with: :exception, prepend: true
-  skip_before_action :verify_authenticity_token, raise: false
+  #skip_before_action :verify_authenticity_token, raise: false
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized_or_login
   after_action :participant_activity

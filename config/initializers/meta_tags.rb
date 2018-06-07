@@ -1,5 +1,5 @@
 # Use this setup block to configure all options available in MetaTags.
-MetaTags.configure do |config|
+#MetaTags.configure do |config|
   # How many characters should the title meta tag have at most. Default is 70.
   # Set to nil or 0 to remove limits.
   # config.title_limit = 70
@@ -31,4 +31,4 @@ MetaTags.configure do |config|
   # config.property_tags.push(
   #   'x-hearthstone:deck',
   # )
-end
+#end

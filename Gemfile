@@ -48,7 +48,7 @@ gem 'client_side_validations'
 gem 'country_select'
 gem 'codemirror-rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
-gem 'meta-tags'
+#gem 'meta-tags'
 
 # performance
 gem 'fast_blank'
