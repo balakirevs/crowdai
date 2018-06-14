@@ -48,4 +48,13 @@ class Challenge::Cell < Template::Cell
     end
   end
 
+  def registered?
+    if current_participant.present?
+      registration = challenge.participant_registrations.where(participant_id: current_participant.id)
+      return registration.present?
+    else
+      return false
+    end
+  end
+
 end

@@ -51,6 +51,7 @@ class Challenge < ApplicationRecord
   accepts_nested_attributes_for :invitations,
     reject_if: :all_blank,
     allow_destroy: true
+  has_many :participant_registrations, dependent: :destroy
 
   as_enum :status,
     [:draft, :running, :completed, :terminated, :starting_soon],

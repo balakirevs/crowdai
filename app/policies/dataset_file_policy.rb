@@ -32,11 +32,24 @@ class DatasetFilePolicy < ApplicationPolicy
       @scope = scope
     end
 
+    def sql(participant_id:)
+      %Q[
+        dataset_files.visible IS TRUE
+        AND dataset_files.evaluation IS FALSE
+        AND EXISTS (
+          SELECT 'X'
+          FROM participant_registrations p
+          WHERE p.participant_id = #{participant_id}
+          AND p.challenge_id = dataset_files.challenge_id
+        )
+      ]
+    end
+
     def resolve
       if participant && (participant.admin? || participant.organizer_id.present?)
         scope.all
       else
-        scope.where("visible is true and evaluation is false")
+        scope.where(sql(participant_id: participant.id))
       end
     end
   end

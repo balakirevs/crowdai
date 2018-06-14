@@ -61,6 +61,7 @@ class Participant < ApplicationRecord
     class_name: "Doorkeeper::AccessToken",
     foreign_key: :resource_owner_id,
     dependent: :destroy
+  has_many :participant_registrations, dependent: :destroy
 
   validates :email,
     presence: true,

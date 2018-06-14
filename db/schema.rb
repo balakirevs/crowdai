@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_091620) do
+ActiveRecord::Schema.define(version: 2018_06_14_114623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -524,6 +524,15 @@ ActiveRecord::Schema.define(version: 2018_06_13_091620) do
     t.index ["participant_id"], name: "index_participant_clef_tasks_on_participant_id"
   end
 
+  create_table "participant_registrations", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_participant_registrations_on_challenge_id"
+    t.index ["participant_id"], name: "index_participant_registrations_on_participant_id"
+  end
+
   create_table "participants", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -753,6 +762,8 @@ ActiveRecord::Schema.define(version: 2018_06_13_091620) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "participant_clef_tasks", "clef_tasks"
   add_foreign_key "participant_clef_tasks", "participants"
+  add_foreign_key "participant_registrations", "challenges"
+  add_foreign_key "participant_registrations", "participants"
   add_foreign_key "participants", "organizers"
   add_foreign_key "partners", "organizers"
   add_foreign_key "submission_comments", "participants"

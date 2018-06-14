@@ -93,6 +93,7 @@ Rails.application.routes.draw do
     get :clef_task
     resources :votes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]
+    resources :participant_registrations, only: [:create]
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 

@@ -24,11 +24,13 @@
                 class: tab_class('clef_dataset') %>
         </li>
       <% else %>
-        <li class=<%= tab_class('dataset') %> >
+        <% if policy_scope(challenge.dataset_files).present? %>
+          <li class=<%= tab_class('dataset') %> >
           <%= link_to 'Dataset',
                 challenge_dataset_files_path(challenge),
                 class: tab_class('dataset') %>
-        </li>
+          </li>
+        <% end %>
       <% end %>
 
       <% if current_participant %>
